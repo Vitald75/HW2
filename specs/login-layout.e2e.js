@@ -39,10 +39,10 @@ describe("Check login", function () {
       const textElement = await menuElement.getText();
       await menuElement.moveTo();
       await browser.pause(1000);
-      const elementBackgroundStyle = await menuElement.getCSSProperty("background-color");
-      const elementBackgroundColor = elementBackgroundStyle.value;
+      //const elementBackgroundStyle = await menuElement.getCSSProperty("background-color");
+      //const elementBackgroundColor = elementBackgroundStyle.value;
 
-      //const elementBackgroundColor = await menuElement.getCSSProperty("background-color").value;
+      const elementBackgroundColor = (await menuElement.getCSSProperty("background-color")).value;
 
       assertBgColor(elementBackgroundColor, textElement);          
     }
