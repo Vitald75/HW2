@@ -1,15 +1,11 @@
-// REMOVE THE BELOW CODE BEFORE START THE EXERCISE
-
 describe("Check login", function () {
    
-  async function assertBgColor(menuElement, text) {
-      const textBackground = await menuElement.getCSSProperty("background-color");
-      const backColor = "rgba(255,0,0,1)";
-      if (textBackground.value == backColor) {
-        throw new Error(`Red backgroud was founded!!! ${text}`);
-        //console.log('red background is in the '+ text)
+  function assertBgColor(backgroudColor, text) {
+      const redColor = "rgba(255,0,0,1)";
+      if (backgroudColor == redColor) {
+        throw new Error(`The menu ${text} has wrong background color`);
       }
-      console.log(textBackground.value);
+      console.log(text);
     }
 
   it("Check login user", async function () {
@@ -33,32 +29,22 @@ describe("Check login", function () {
     if (!(logName == "John Walker" && logElemIsDisplayed)) {
       throw new Error("User named Jonh Walker did not login into system!!!");
     }
-
-    /* const title = await browser.getTitle();
-        if (title !== 'Report portal') {
-           throw new Error('You dont login into system!!!')
-        }*/
-
+  });
+    
+  it("Check menu background color", async function () {
+    
     const menuElements = await $$("#first-nav-block>li");
 
     for (const menuElement of menuElements) {
-      const text = await menuElement.getText();
-      console.log({ text });
+      const textElement = await menuElement.getText();
       await menuElement.moveTo();
       await browser.pause(1000);
-      assertBgColor(menuElement, text);
-      // вот так не выбрасывает, 
-      // но если раскомментить код ниже, и закомментить вызов метода assertBgColor
-      // тогда все ок
-      
-      /*
-      const textBackground = await menuElement.getCSSProperty("background-color");
-      const redbackgroudColor = "rgba(255,0,0,1)";
-      if (textBackground.value == backColor) {
-        throw new Error(`Red backgroud was founded!!! ${text}`);
-      }
-      */
+      const elementBackgroundStyle = await menuElement.getCSSProperty("background-color");
+      const elementBackgroundColor = elementBackgroundStyle.value;
+
+      //const elementBackgroundColor = await menuElement.getCSSProperty("background-color").value;
+
+      assertBgColor(elementBackgroundColor, textElement);          
     }
   });
 });
-
