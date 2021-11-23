@@ -1,7 +1,5 @@
-// REMOVE THE BELOW CODE BEFORE START THE EXERCISE
-
-describe("Check web site", function () {
-  before("open url and login with ...", async function () {
+describe("Check hide button on web site", function () {
+  before("open url and login with credentials walker@jw.com:password", async function () {
     await browser.url("https://viktor-silakov.github.io/course-sut");
     await $("#login").setValue("walker@jw.com");
     await $("#password").setValue("password");
@@ -14,7 +12,7 @@ describe("Check web site", function () {
     });
   });
 
-  it("click on hide button three times", async function () {
+  it("should click on hide button and accept alert three times", async function () {
     await browser.execute(
       'document.querySelector("header.sticky-top").remove()'
     );

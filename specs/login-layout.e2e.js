@@ -1,6 +1,4 @@
-// REMOVE THE BELOW CODE BEFORE START THE EXERCISE
-
-describe("Check login", function () {
+describe("Check for login, explicit waiting, layout background", function () {
   function assertBgColor(backgroudColor, text) {
     const redColor = "rgba(255,0,0,1)";
     if (backgroudColor == redColor) {
@@ -9,7 +7,7 @@ describe("Check login", function () {
     console.log(text);
   }
 
-  it("Check login user and check menu background color", async function () {
+  it("Check login user walker@jw.com:password, check menu elements background color", async function () {
     await browser.url("https://viktor-silakov.github.io/course-sut");
     await $("#login").setValue("walker@jw.com");
     await $("#password").setValue("password");
@@ -40,4 +38,3 @@ describe("Check login", function () {
     }
   });
 });
-//});
