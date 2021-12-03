@@ -14,14 +14,17 @@ describe("Check for login, explicit waiting, layout background", function () {
     await $('button[onclick="login();"]').click();
     const spinner = await $("#spinner");
     await spinner.waitForDisplayed({
+       timeoutMsg: "Spinner does not appear"
+    });
+    await spinner.waitForDisplayed({
       reverse: true,
       timeoutMsg: "Spinner does not hide",
       timeout: 15000,
     });
     const logElem = await $('a[title="walker@jw.com"]');
+    await logElem.waitForDisplayed();
     const logName = await logElem.getText();
-    const logElemIsDisplayed = await logElem.isDisplayed();
-    if (!(logName == "John Walker" && logElemIsDisplayed)) {
+    if (!(logName == "John Walker")) {
       throw new Error("User named Jonh Walker did not login into system!!!");
     }
     const menuElements = await $$("#first-nav-block>li");
